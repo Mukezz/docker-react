@@ -3,8 +3,8 @@ sudo: required # sudo will add the super user permission for traviCI for using d
 services: 
     - docker
 
-before-install:
+before_install:
     - docker build -t kvmukesh/reactjs-webapp -f Dockerfile.dev .
 
 script:
-    - docker run kvmukesh/reactjs-webapp npm run test -- --coverage
+    - docker run -e CI=true kvmukesh/reactjs-webapp npm run test
