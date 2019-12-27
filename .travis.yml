@@ -8,3 +8,16 @@ before_install:
 
 script:
     - docker run -e CI=true kvmukesh/reactjs-webapp npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-1
+    app: docker-react
+    env: DockerReact-env
+    bucket_name: elasticbeanstalk-us-east-1-814423982579
+    bucker_path: docker-react
+    on:
+        branch: master
+        access_key_id: $aws_access_id
+        secret_access_id:
+            secure: $aws_secret_id
